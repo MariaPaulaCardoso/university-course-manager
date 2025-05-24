@@ -1,0 +1,38 @@
+# Compilados Java
+*.class
+*.jar
+
+bin/
+
+# Arquivos de log e temporários
+*.log
+*.tmp
+
+.vscode/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Arquivos de backup
+*~
+*.bak
+*.swp
+
+target/
+build/
+
+# Arquivos gerados por IDEs (Eclipse, IntelliJ)
+*.iml
+.idea/
+*.classpath
+*.project
+.settings/
+
+# Arquivos do sistema de controle de versão
+*.orig
+
+# Arquivos do PostgreSQL (caso gere dumps locais)
+*.sql
+*.dump
