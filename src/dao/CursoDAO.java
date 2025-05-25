@@ -7,31 +7,46 @@ import util.ConnectionFactory;
 
 public class CursoDAO {
     public int insertCurso(Curso curso) {
-        String sql = "INSERT INTO cursos (nome, data_proc, periodo_inicial, periodo_final, sequencia, versao) VALUES (?, ?, ?, ?, ?, ?)";
+        String selectSql = "SELECT id FROM tb_cursos WHERE nome = ? AND data_processamento = ?";
+        String insertSql = "INSERT INTO tb_cursos (nome, data_processamento, periodo_inicial, periodo_final, sequencia_arquivo, versao_layout) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConnectionFactory.getConnection()) {
+        
+            try (PreparedStatement selectStmt = conn.prepareStatement(selectSql)) {
+                selectStmt.setString(1, curso.getNome());
+                selectStmt.setDate(2, new java.sql.Date(curso.getDataProcessamento().getTime()));
+                ResultSet rs = selectStmt.executeQuery();
+                if (rs.next()) {
+                    int id = rs.getInt("id");
+                    curso.setId(id);
+                    return id;
+                }
+            }
+            // Insert if not exists
+            try (PreparedStatement pstmt = conn.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS)) {
+                pstmt.setString(1, curso.getNome());
+                pstmt.setDate(2, new java.sql.Date(curso.getDataProcessamento().getTime()));
+                pstmt.setString(3, curso.getPeriodoInicial());
+                pstmt.setString(4, curso.getPeriodoFinal());
+                pstmt.setInt(5, curso.getSequenciaArquivo());
+                pstmt.setString(6, curso.getVersaoLayout());
 
-            pstmt.setString(1, curso.getNome());
-            pstmt.setDate(2, new java.sql.Date(curso.getDataProcessamento().getTime()));
-            pstmt.setString(3, curso.getPeriodoInicial());
-            pstmt.setString(4, curso.getPeriodoFinal());
-            pstmt.setInt(5, curso.getSequenciaArquivo());
-            pstmt.setString(6, curso.getVersaoLayout());
-
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                int id = rs.getInt("id");
-                curso.setId(id);
-                return id;
-            } 
-
+                int affectedRows = pstmt.executeUpdate();
+                if (affectedRows == 0) {
+                    throw new SQLException("Inserting curso failed, no rows affected.");
+                }
+                ResultSet generatedKeys = pstmt.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int id = generatedKeys.getInt(1);
+                    curso.setId(id);
+                    return id;
+                } else {
+                    throw new SQLException("Inserting curso failed, no ID obtained.");
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return 0;
-        } 
-
-        return -1;
+        }
     }
 }
