@@ -39,7 +39,7 @@ public class TxtParser {
                     int sequencia = Integer.parseInt(line.substring(73, 80));
                     String versao = line.substring(80, 83);
 
-                    curso = new Curso(nomeCurso, dataProc, periodoFinal, periodoInicial, sequencia, versao);
+                    curso = new Curso(nomeCurso, dataProc, periodoInicial, periodoFinal, sequencia, versao);
                     break;
 
                 case 1:
