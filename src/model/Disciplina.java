@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Disciplina {
     private int id;
     private Fase faseId;
@@ -57,6 +60,16 @@ public class Disciplina {
 
     public void setCarga_horaria(int carga_horaria) {
         this.carga_horaria = carga_horaria;
+    }
+
+    private List<Professor> professores = new ArrayList<>();
+
+    public void addProfessor(Professor p) {
+        professores.add(p);
+    }
+
+    public List<Professor> getProfessores() {
+        return professores;
     }
 
     @Override public String toString(){

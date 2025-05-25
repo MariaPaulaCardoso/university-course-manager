@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Fase {
 
     private Curso curso;
@@ -9,12 +12,13 @@ public class Fase {
     private int qtd_disciplinas;
     private int qtd_professores;
     
+    private List<Disciplina> disciplinas = new ArrayList<>();
+
     public Fase(){
 
     }
 
-    public Fase(int id, String fase, int qtd_disciplinas, int qtd_professores, Curso curso){
-        this.id = id;
+    public Fase( String fase, int qtd_disciplinas, int qtd_professores, Curso curso){
         this.fase = fase;
         this.qtd_disciplinas = qtd_disciplinas;
         this.qtd_professores = qtd_professores;
@@ -60,6 +64,14 @@ public class Fase {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public void addDisciplina(Disciplina d) {
+        disciplinas.add(d);
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
     }
 
     @Override public String toString(){
