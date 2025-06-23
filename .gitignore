@@ -36,3 +36,7 @@ build/
 # Arquivos do PostgreSQL (caso gere dumps locais)
 *.sql
 *.dump
+
+src/util/ConnectionFactory.java
+src/util/ConnectionFactory.java
+src/util/ConnectionFactory.java
