@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.*;
 import util.ConnectionFactory;
 import model.Fase;
+import model.Curso;
 
 public class FaseDAO {
     public int insertFase(Fase fase) {
@@ -43,13 +44,23 @@ public class FaseDAO {
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
+            CursoDAO cursoDAO = new CursoDAO();
             while (rs.next()) {
                 Fase fase = new Fase();
                 fase.setId(rs.getInt("id"));
                 fase.setFase(rs.getString("fase"));
                 fase.setQtd_disciplinas(rs.getInt("qtd_disciplinas"));
                 fase.setQtd_professores(rs.getInt("qtd_professores"));
-                // CursoId is available as rs.getInt("curso_id") if needed
+                int cursoId = rs.getInt("curso_id");
+                // Busca o curso correspondente e seta no objeto Fase
+                Curso curso = null;
+                for (Curso c : cursoDAO.getAllCursos()) {
+                    if (c.getId() == cursoId) {
+                        curso = c;
+                        break;
+                    }
+                }
+                fase.setCurso(curso);
                 fases.add(fase);
             }
         } catch (SQLException e) {

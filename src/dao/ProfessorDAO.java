@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.*;
 import util.ConnectionFactory;
 import model.Professor;
+import model.Disciplina;
 
 public class ProfessorDAO {
     public int insertProfessor(Professor professor) {
@@ -48,12 +49,23 @@ public class ProfessorDAO {
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
+            DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
+            List<Disciplina> todasDisciplinas = disciplinaDAO.getAllDisciplinas();
             while (rs.next()) {
                 Professor p = new Professor();
                 p.setId(rs.getInt("id"));
                 p.setNome(rs.getString("nome"));
                 p.setTitulo_docente(rs.getInt("titulo_docente"));
-                // DisciplinaId is available as rs.getInt("disciplina_id") if needed
+                int disciplinaId = rs.getInt("disciplina_id");
+                // Busca a disciplina correspondente e seta no objeto Professor
+                Disciplina disciplina = null;
+                for (Disciplina d : todasDisciplinas) {
+                    if (d.getId() == disciplinaId) {
+                        disciplina = d;
+                        break;
+                    }
+                }
+                p.setDisciplina(disciplina);
                 professores.add(p);
             }
         } catch (SQLException e) {
