@@ -4,6 +4,7 @@ import model.Curso;
 import model.Fase;
 import model.Disciplina;
 import model.Professor;
+import service.ImportService;
 import util.TxtParser;
 
 import javax.swing.*;
@@ -73,8 +74,13 @@ public class ImportacaoView extends JFrame {
         btnImportar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aqui futuramente será feita a importação para o banco
-                JOptionPane.showMessageDialog(ImportacaoView.this, "Importação realizada com sucesso! (simulação)");
+                try {
+                    ImportService service = new ImportService();
+                    service.importarCurso(curso);
+                    JOptionPane.showMessageDialog(ImportacaoView.this, "Importação realizada com sucesso!");
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(ImportacaoView.this, "Erro ao importar para o banco: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }
@@ -144,7 +150,16 @@ public class ImportacaoView extends JFrame {
         for (int i = 0; i < todosProfs.size(); i++) {
             Professor p = todosProfs.get(i);
             dadosProf[i][0] = p.getNome();
-            dadosProf[i][1] = p.getTitulo_docente();
+            // Traduzir título docente
+            String titulo;
+            switch (String.format("%02d", p.getTitulo_docente())) {
+                case "01": titulo = "Pós-graduação"; break;
+                case "02": titulo = "Mestrado"; break;
+                case "03": titulo = "Doutorado"; break;
+                case "04": titulo = "Pós-doutorado"; break;
+                default: titulo = "Desconhecido";
+            }
+            dadosProf[i][1] = titulo;
             dadosProf[i][2] = p.getDisciplina() != null ? p.getDisciplina().getNome() : "";
         }
         tblProfessores.setModel(new DefaultTableModel(dadosProf, colProf));

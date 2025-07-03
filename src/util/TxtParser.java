@@ -56,12 +56,12 @@ public class TxtParser {
                     break;
 
                 case 2: 
-                    if (line.length() < 46) {
-                        System.out.println("[ERRO] Linha de disciplina muito curta (esperado 46, encontrado " + line.length() + "): " + line);
+                    if (line.length() < 10) {
+                        System.out.println("[ERRO] Linha de disciplina muito curta (esperado 10, encontrado " + line.length() + "): " + line);
                         continue;
                     }
                     int disciplinaId = Integer.parseInt(line.substring(1, 6));
-                    String disciplinaNome = line.substring(6, 46).trim();
+                    String disciplinaNome = line.substring(6, 10).trim();
                     String codigo = ""; 
                     int cargaHoraria = 0;
 

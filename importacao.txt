@@ -1,128 +1,128 @@
 0Ciencia da Computacao_3                           2025062301-fase08-fase0000011001
 101-fase0505
 2269740201
-3Silva_f                                  01
+3Silva_f                                     01
 2276940301
-3Luciano Antunes                          03
+3Luciano Antunes                             03
 2276950401
-3Santos_f                                 01
+3Santos_f                                    01
 2276960201
-3Rogerio Casagrande                       03
+3Rogerio Casagrande                          03
 2276970501
-3Lima_f                                   01
+3Lima_f                                      01
 102-fase0606
 2270230301
-3Louise Miron Roloff                      02
+3Louise Miron Roloff                         02
 2276980201
-3Ana Claudia Garcia Barbosa               02
+3Ana Claudia Garcia Barbosa                  02
 2276990301
-3Leila Lais Goncalves                     03
+3Leila Lais Goncalves                        03
 2277000401
-3Oliveira_f                               01
+3Oliveira_f                                  01
 2277010501
-3Luciano Antunes                          03
+3Luciano Antunes                             03
 2277020201
-3Giacomo Antonio Althoff Bolan            02
+3Giacomo Antonio Althoff Bolan               02
 103-fase0606
 2273000301
-3Louise Miron Roloff                      02
+3Louise Miron Roloff                         02
 2273090401
-3Costa_f                                  01
+3Costa_f                                     01
 2277030501
-3Ferreira_f                               01
+3Ferreira_f                                  01
 2277040201
-3Diorgines Mattos Machado                 02
+3Diorgines Mattos Machado                    02
 2277050301
-3Almeida_f                                01
+3Almeida_f                                   01
 2277060401
-3Matheus Leandro Ferreira                 02
+3Matheus Leandro Ferreira                    02
 104-fase0606
 2270730501
-3Louise Miron Roloff                      02
+3Louise Miron Roloff                         02
 2277070201
-3Ribeiro_f                                01
+3Ribeiro_f                                   01
 2277080301
-3Souza_f                                  01
+3Souza_f                                     01
 2277090401
-3Pereira_f                                01
+3Pereira_f                                   01
 2277100501
-3Martins_f                                01
+3Martins_f                                   01
 2277110201
-3Rodrigues_f                              01
+3Rodrigues_f                                 01
 105-fase1313
 2291260301
-3Carvalho_f                               01
+3Carvalho_f                                  01
 2270090401
-3Dias_f                                   01
+3Dias_f                                      01
 2277120501
-3Ana Claudia Garcia Barbosa               02
+3Ana Claudia Garcia Barbosa                  02
 2277130201
-3Gomes_f                                  01
+3Gomes_f                                     01
 2277140301
-3Nascimento_f                             01
+3Nascimento_f                                01
 2277150401
-3Barbosa_f                                01
+3Barbosa_f                                   01
 2277160501
-3Matheus Leandro Ferreira                 02
+3Matheus Leandro Ferreira                    02
 2291250201
-3Araujo_f                                 01
+3Araujo_f                                    01
 2291290301
-3Moreira_f                                01
+3Moreira_f                                   01
 2297320401
-3Campos_f                                 01
+3Campos_f                                    01
 2297330501
-3Cardoso_f                                01
+3Cardoso_f                                   01
 2297340201
-3Mendes_f                                 01
+3Mendes_f                                    01
 2297350301
-3Teixeira_f                               01
+3Teixeira_f                                  01
 2297360401
-3Machado_f                                01
+3Machado_f                                   01
 2297370501
-3Correia_f                                01
+3Correia_f                                   01
 2297380201
-3Vieira_f                                 01
+3Vieira_f                                    01
 2297390301
-3Ramos_f                                  01
+3Ramos_f                                     01
 106-fase0505
 2277170401
-3Castro_f                                 01
+3Castro_f                                    01
 2277180501
-3Freitas_f                                01
+3Freitas_f                                   01
 2277190201
-3Moura_f                                  01
+3Moura_f                                     01
 2277200301
-3Cunha_f                                  01
+3Cunha_f                                     01
 2277210401
-3Azevedo_f                                01
+3Azevedo_f                                   01
 2277220501
-3Monteiro_f                               01
+3Monteiro_f                                  01
 107-fase0606
 2270150201
-3Lopes_f                                  01
+3Lopes_f                                     01
 2277250301
-3Giacomo Antonio Althoff Bolan            02
+3Giacomo Antonio Althoff Bolan               02
 2277270401
-3Pinto_f                                  01
+3Pinto_f                                     01
 2277280501
-3Batista_f                                01
+3Batista_f                                   01
 2277290201
-3Nunes_f                                  01
+3Nunes_f                                     01
 2277300301
-3Rocha_f                                  01
+3Rocha_f                                     01
 2277310401
-3Duarte_f                                 01
+3Duarte_f                                    01
 108-fase0606
 2277320501
-3Cavalcanti_f                             01
+3Cavalcanti_f                                01
 2277330201
-3Farias_f                                 01
+3Farias_f                                    01
 2277340301
-3Vasconcelos_f                            01
+3Vasconcelos_f                               01
 2277350401
-3Brandao_f                                01
+3Brandao_f                                   01
 2277360501
-3Tavares_f                                01
+3Tavares_f                                   01
 2277370201
-3Reis_f                                   01
+3Reis_f                                      01
 900000000126
