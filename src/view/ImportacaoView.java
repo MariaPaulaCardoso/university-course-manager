@@ -40,10 +40,12 @@ public class ImportacaoView extends JFrame {
         btnSelecionar = new JButton("Selecionar arquivo");
         btnImportar = new JButton("Importar");
         btnImportar.setEnabled(false);
+        JButton btnLimparBanco = new JButton("Limpar Banco");
         pnlTopo.add(new JLabel("Arquivo:"));
         pnlTopo.add(txtArquivo);
         pnlTopo.add(btnSelecionar);
         pnlTopo.add(btnImportar);
+        pnlTopo.add(btnLimparBanco);
         add(pnlTopo, BorderLayout.NORTH);
 
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -81,6 +83,17 @@ public class ImportacaoView extends JFrame {
                     JOptionPane.showMessageDialog(ImportacaoView.this, "Importação realizada com sucesso!");
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(ImportacaoView.this, "Erro ao importar para o banco: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        btnLimparBanco.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int confirm = JOptionPane.showConfirmDialog(ImportacaoView.this, "Tem certeza que deseja apagar todas as tabelas do banco?", "Confirmação", JOptionPane.YES_NO_OPTION);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    util.ConnectionFactory.dropAllTables();
+                    JOptionPane.showMessageDialog(ImportacaoView.this, "Tabelas removidas com sucesso!");
                 }
             }
         });
