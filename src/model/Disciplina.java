@@ -8,13 +8,13 @@ public class Disciplina {
     private Fase faseId;
     private String codigo;
     private String nome; 
-    private int dia_semana;
+    private String dia_semana;
 
     public Disciplina(){
 
     }
 
-    public Disciplina(int id, Fase faseId, String codigo, String nome, int dia_semana){
+    public Disciplina(int id, Fase faseId, String codigo, String nome, String dia_semana){
         this.id = id;
         this.faseId = faseId;
         this.codigo = codigo;
@@ -54,11 +54,11 @@ public class Disciplina {
         this.nome = nome;
     }
 
-    public int getdia_semana() {
+    public String getdia_semana() {
         return dia_semana;
     }
 
-    public void setdia_semana(int dia_semana) {
+    public void setdia_semana(String dia_semana) {
         this.dia_semana = dia_semana;
     }
 
@@ -67,11 +67,11 @@ public class Disciplina {
     }
 
     public void setDia_semana(String dia_semana) {
-        try {
-            this.dia_semana = Integer.parseInt(dia_semana);
-        } catch (Exception e) {
-            this.dia_semana = 0;
-        }
+        // try {
+        //     this.dia_semana = Integer.parseInt(dia_semana);
+        // } catch (Exception e) {
+        //     this.dia_semana = 0;
+        // }
     }
 
     private List<Professor> professores = new ArrayList<>();

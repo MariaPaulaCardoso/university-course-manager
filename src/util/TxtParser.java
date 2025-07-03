@@ -56,22 +56,22 @@ public class TxtParser {
                     break;
 
                 case 2: 
-                    // Disciplina: 2 + 5 chars (codigo) + 1 char (dia semana)
-                    if (line.length() < 7) {
-                        System.out.println("[ERRO] Linha de disciplina muito curta (esperado 7, encontrado " + line.length() + "): " + line);
+                    // Disciplina: 2 + 5 chars (codigo) + 2 chars (dia semana)
+                    if (line.length() < 8) {
+                        System.out.println("[ERRO] Linha de disciplina muito curta (esperado 8, encontrado " + line.length() + "): " + line);
                         continue;
                     }
                     String codigoDisciplina = line.substring(1, 6); // 5 chars
-                    String diaSemana = line.substring(6, 7);        // 1 char
+                    String diaSemana = line.substring(6, 8); // 2 chars, keep as string
+                    System.out.println("DEBUG: codigoDisciplina=" + codigoDisciplina + ", diaSemana='" + diaSemana + "'");
                     String detailsLine = br.readLine();
                     if (detailsLine == null || !detailsLine.startsWith("3")) {
                         System.out.println("[ERRO] Esperado linha de detalhes de disciplina/professor após código: " + codigoDisciplina);
                         continue;
                     }
                     String disciplinaNome = detailsLine.substring(1, 44).trim();
-                    int cargaHoraria = 0; // Not present, set to 0 or parse if available
                     int disciplinaId = 0; // Not present, set to 0 or parse if available
-                    currentDisciplina = new Disciplina(disciplinaId, currentFase, codigoDisciplina, disciplinaNome, cargaHoraria);
+                    currentDisciplina = new Disciplina(disciplinaId, currentFase, codigoDisciplina, disciplinaNome, diaSemana);
                     currentDisciplina.setDia_semana(diaSemana); // Assumes you have this setter
                     if (currentFase != null) {
                         currentFase.addDisciplina(currentDisciplina);

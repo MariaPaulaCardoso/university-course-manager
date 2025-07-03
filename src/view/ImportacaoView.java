@@ -133,13 +133,25 @@ public class ImportacaoView extends JFrame {
         for (Fase f : fases) {
             todasDisciplinas.addAll(f.getDisciplinas());
         }
-        String[] colDisc = {"Código", "Nome", "Carga Horária", "Fase"};
+        String[] colDisc = {"Código", "Nome", "Dia da Semana", "Fase"};
         Object[][] dadosDisc = new Object[todasDisciplinas.size()][4];
         for (int i = 0; i < todasDisciplinas.size(); i++) {
             Disciplina d = todasDisciplinas.get(i);
             dadosDisc[i][0] = d.getCodigo();
             dadosDisc[i][1] = DisciplinaNomeResolver.getNomePorCodigo(d.getCodigo());
-            dadosDisc[i][2] = d.getdia_semana();
+            // Traduzir dia da semana
+            String diaSemana;
+            switch (d.getDia_semana()) {
+                case "01": diaSemana = "Domingo"; break;
+                case "02": diaSemana = "Segunda"; break;
+                case "03": diaSemana = "Terça"; break;
+                case "04": diaSemana = "Quarta"; break;
+                case "05": diaSemana = "Quinta"; break;
+                case "06": diaSemana = "Sexta"; break;
+                case "07": diaSemana = "Sábado"; break;
+                default: diaSemana = "Desconhecido";
+            }
+            dadosDisc[i][2] = diaSemana;
             dadosDisc[i][3] = d.getFaseId() != null ? d.getFaseId().getFase() : "";
         }
         tblDisciplinas.setModel(new DefaultTableModel(dadosDisc, colDisc));
