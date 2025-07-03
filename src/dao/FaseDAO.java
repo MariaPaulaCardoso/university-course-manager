@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.*;
+import java.util.*;
 import util.ConnectionFactory;
 import model.Fase;
 
@@ -35,5 +36,26 @@ public class FaseDAO {
             return -1;
         }
     }
-    
+
+    public List<Fase> getAllFases() {
+        List<Fase> fases = new ArrayList<>();
+        String sql = "SELECT * FROM tb_fases";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Fase fase = new Fase();
+                fase.setId(rs.getInt("id"));
+                fase.setFase(rs.getString("fase"));
+                fase.setQtd_disciplinas(rs.getInt("qtd_disciplinas"));
+                fase.setQtd_professores(rs.getInt("qtd_professores"));
+                // CursoId is available as rs.getInt("curso_id") if needed
+                fases.add(fase);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return fases;
+    }
+
 }

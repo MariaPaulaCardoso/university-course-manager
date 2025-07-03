@@ -11,15 +11,23 @@ public class MenuPrincipalFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 500);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(3, 1, 10, 10));
+        setLayout(new GridLayout(4, 1, 10, 10));
 
+        JButton btnVerBanco = new JButton("Ver tudo no banco");
         JButton btnImportar = new JButton("Importar arquivo de curso");
         JButton btnSair = new JButton("Sair");
 
+        btnVerBanco.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Abre a janela para ver tudo no banco
+                new view.CursoView().setVisible(true);
+            }
+        });
+
         btnImportar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Aqui você vai abrir a tela de importação (próximo passo)
-                JOptionPane.showMessageDialog(MenuPrincipalFrame.this, "[INFO] Opção de importação selecionada.");
+                // Abre a tela de importação
+                new view.ImportacaoView().setVisible(true);
             }
         });
 
@@ -29,6 +37,7 @@ public class MenuPrincipalFrame extends JFrame {
             }
         });
 
+        add(btnVerBanco);
         add(btnImportar);
         add(new JLabel()); // Espaço
         add(btnSair);

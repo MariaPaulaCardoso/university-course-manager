@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.*;
+import java.util.*;
 import util.ConnectionFactory;
 import model.Disciplina;
 
@@ -38,4 +39,22 @@ public class DisciplinaDAO {
         }
     }
     
+    public List<Disciplina> getAllDisciplinas() {
+        List<Disciplina> disciplinas = new ArrayList<>();
+        String sql = "SELECT * FROM tb_disciplinas";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Disciplina d = new Disciplina();
+                d.setId(rs.getInt("id"));
+                d.setCodigo(rs.getString("codigo"));
+                // FaseId is available as rs.getInt("fase_id") if needed
+                disciplinas.add(d);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return disciplinas;
+    }
 }

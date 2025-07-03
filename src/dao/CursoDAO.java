@@ -1,7 +1,7 @@
 package dao;
 
 import java.sql.*;
-
+import java.util.*;
 import model.*;
 import util.ConnectionFactory;
 
@@ -48,5 +48,28 @@ public class CursoDAO {
             e.printStackTrace();
             return 0;
         }
+    }
+
+    public List<Curso> getAllCursos() {
+        List<Curso> cursos = new ArrayList<>();
+        String sql = "SELECT * FROM tb_cursos";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Curso curso = new Curso();
+                curso.setId(rs.getInt("id"));
+                curso.setNome(rs.getString("nome"));
+                curso.setDataProcessamento(rs.getDate("data_processamento"));
+                curso.setPeriodoInicial(rs.getString("periodo_inicial"));
+                curso.setPeriodoFinal(rs.getString("periodo_final"));
+                curso.setSequenciaArquivo(rs.getInt("sequencia_arquivo"));
+                curso.setVersaoLayout(rs.getString("versao_layout"));
+                cursos.add(curso);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cursos;
     }
 }

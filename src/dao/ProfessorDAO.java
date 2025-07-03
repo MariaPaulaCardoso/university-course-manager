@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.*;
+import java.util.*;
 import util.ConnectionFactory;
 import model.Professor;
 
@@ -39,5 +40,25 @@ public class ProfessorDAO {
             e.printStackTrace();
             return -1;
         }
+    }
+
+    public List<Professor> getAllProfessores() {
+        List<Professor> professores = new ArrayList<>();
+        String sql = "SELECT * FROM tb_professores";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Professor p = new Professor();
+                p.setId(rs.getInt("id"));
+                p.setNome(rs.getString("nome"));
+                p.setTitulo_docente(rs.getInt("titulo_docente"));
+                // DisciplinaId is available as rs.getInt("disciplina_id") if needed
+                professores.add(p);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return professores;
     }
 }
