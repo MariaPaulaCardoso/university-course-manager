@@ -6,7 +6,9 @@ import model.Disciplina;
 import model.Professor;
 import service.ImportService;
 import util.DisciplinaNomeResolver;
+import util.FileHashUtil;
 import util.TxtParser;
+import dao.ImportedFileDAO;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -78,6 +80,15 @@ public class ImportacaoView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    String caminho = txtArquivo.getText();
+                    File file = new File(caminho);
+                    String fileHash = FileHashUtil.getFileHash(file);
+                    ImportedFileDAO importedFileDAO = new ImportedFileDAO();
+                    boolean novoArquivo = importedFileDAO.insertImportedFile(fileHash, file.getName(), 0); // 0 pode ser ajustado para o total de registros
+                    if (!novoArquivo) {
+                        JOptionPane.showMessageDialog(ImportacaoView.this, "Este arquivo já foi importado!", "Arquivo duplicado", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     ImportService service = new ImportService();
                     service.importarCurso(curso);
                     JOptionPane.showMessageDialog(ImportacaoView.this, "Importação realizada com sucesso!");
