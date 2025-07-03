@@ -188,8 +188,10 @@ public class ImportacaoView extends JFrame {
                 case 4: titulo = "Pós-doutorado"; break;
                 default: titulo = "Desconhecido";
             }
+            Disciplina d = todasDisciplinas.get(i);
+            dadosDisc[i][1] = DisciplinaNomeResolver.getNomePorCodigo(d.getCodigo());
             dadosProf[i][1] = titulo;
-            dadosProf[i][2] = p.getDisciplina() != null ? p.getDisciplina().getNome() : "";
+            dadosProf[i][2] = p.getDisciplina() != null ? p.getDisciplina().getCodigo() + "  -  " + dadosDisc [i][1] : "";
         }
         tblProfessores.setModel(new DefaultTableModel(dadosProf, colProf));
     }
