@@ -77,11 +77,15 @@ public class TxtParser {
                         currentFase.addDisciplina(currentDisciplina);
                     }
                     // Professor info (in same line)
-                    String tituloDocenteStr = detailsLine.substring(44, 46).trim();
+                    String tituloDocenteStr = detailsLine.substring(45, 47).trim(); // adjust indices and trim
+                    System.out.println("DEBUG: tituloDocenteStr='" + tituloDocenteStr + "'");
                     int tituloDocente = 0;
                     try {
-                        tituloDocente = Integer.parseInt(tituloDocenteStr);
+                        if (!tituloDocenteStr.isEmpty()) {
+                            tituloDocente = Integer.parseInt(tituloDocenteStr);
+                        }
                     } catch (Exception e) {
+                        System.out.println("[ERRO] Não foi possível converter tituloDocenteStr: '" + tituloDocenteStr + "'");
                         // ignore, keep as 0
                     }
                     Professor professor = new Professor(0, curso, currentDisciplina, disciplinaNome, tituloDocente);

@@ -168,11 +168,11 @@ public class ImportacaoView extends JFrame {
             dadosProf[i][0] = p.getNome();
             // Traduzir título docente
             String titulo;
-            switch (String.format("%02d", p.getTitulo_docente())) {
-                case "01": titulo = "Pós-graduação"; break;
-                case "02": titulo = "Mestrado"; break;
-                case "03": titulo = "Doutorado"; break;
-                case "04": titulo = "Pós-doutorado"; break;
+            switch (p.getTitulo_docente()) {
+                case 1: titulo = "Pós-graduação"; break;
+                case 2: titulo = "Mestrado"; break;
+                case 3: titulo = "Doutorado"; break;
+                case 4: titulo = "Pós-doutorado"; break;
                 default: titulo = "Desconhecido";
             }
             dadosProf[i][1] = titulo;
