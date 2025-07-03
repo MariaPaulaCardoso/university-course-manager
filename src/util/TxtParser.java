@@ -56,32 +56,42 @@ public class TxtParser {
                     break;
 
                 case 2: 
-                    if (line.length() < 10) {
-                        System.out.println("[ERRO] Linha de disciplina muito curta (esperado 10, encontrado " + line.length() + "): " + line);
+                    // Disciplina: 2 + 5 chars (codigo) + 1 char (dia semana)
+                    if (line.length() < 7) {
+                        System.out.println("[ERRO] Linha de disciplina muito curta (esperado 7, encontrado " + line.length() + "): " + line);
                         continue;
                     }
-                    int disciplinaId = Integer.parseInt(line.substring(1, 6));
-                    String disciplinaNome = line.substring(6, 10).trim();
-                    String codigo = ""; 
-                    int cargaHoraria = 0;
-
-                    currentDisciplina = new Disciplina(disciplinaId, currentFase, codigo, disciplinaNome, cargaHoraria);
+                    String codigoDisciplina = line.substring(1, 6); // 5 chars
+                    String diaSemana = line.substring(6, 7);        // 1 char
+                    String detailsLine = br.readLine();
+                    if (detailsLine == null || !detailsLine.startsWith("3")) {
+                        System.out.println("[ERRO] Esperado linha de detalhes de disciplina/professor após código: " + codigoDisciplina);
+                        continue;
+                    }
+                    String disciplinaNome = detailsLine.substring(1, 44).trim();
+                    int cargaHoraria = 0; // Not present, set to 0 or parse if available
+                    int disciplinaId = 0; // Not present, set to 0 or parse if available
+                    currentDisciplina = new Disciplina(disciplinaId, currentFase, codigoDisciplina, disciplinaNome, cargaHoraria);
+                    currentDisciplina.setDia_semana(diaSemana); // Assumes you have this setter
                     if (currentFase != null) {
                         currentFase.addDisciplina(currentDisciplina);
+                    }
+                    // Professor info (in same line)
+                    String tituloDocenteStr = detailsLine.substring(44, 46).trim();
+                    int tituloDocente = 0;
+                    try {
+                        tituloDocente = Integer.parseInt(tituloDocenteStr);
+                    } catch (Exception e) {
+                        // ignore, keep as 0
+                    }
+                    Professor professor = new Professor(0, curso, currentDisciplina, disciplinaNome, tituloDocente);
+                    if (currentDisciplina != null) {
+                        currentDisciplina.addProfessor(professor);
                     }
                     break;
 
                 case 3:
-                    if (line.length() < 47) {
-                        System.out.println("[ERRO] Linha de professor muito curta (esperado 47, encontrado " + line.length() + "): " + line);
-                        continue;
-                    }
-                    String professorNome = line.substring(1, 46).trim();
-                    int tituloDocente = Integer.parseInt(line.substring(46, 47));
-                    Professor professor = new Professor(0, curso, currentDisciplina, professorNome, tituloDocente);
-                    if (currentDisciplina != null) {
-                        currentDisciplina.addProfessor(professor);
-                    }
+                    // This case is not used in your file format, skip
                     break;
 
                 case 9: 

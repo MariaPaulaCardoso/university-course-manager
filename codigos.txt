@@ -1,0 +1,92 @@
+
+Cód.	Disciplina	
+26974	Laboratório Formativo I: Nosso Lugar e o Futuro	2024/1	
+27694	Resolução de Problemas Computacionais	2024/1	
+27695	Fundamentos Matemáticos	2024/1	
+27696	Evolução da Tecnologia	2024/1	
+27697	Sistemas Eletrônicos	2024/1	
+27023	Funções e Derivadas	2024/2	
+27698	Lógica Computacional	2024/2	
+27699	Design de Interação	2024/2	
+27700	Sistemas Digitais	2024/2		
+27701	Laboratório de Programação	2024/2	
+27702	Desenvolvimento de Aplicações I	2024/2	
+
+27300	Cálculo Integral	3ª	Sexta-feira das 19h às 21h45
+27309	Estatística	3ª	Sexta-feira das 19h às 21h45
+27703	Gerenciamento de Dados I	3ª	Terça-feira das 19h às 21h45
+27704	Resolução de Problemas Estruturados I	3ª	Quarta-feira das 19h às 21h45
+27705	Arquitetura de Computadores	3ª	Segunda-feira das 19h às 21h45
+27706	Programação Orientada a Objetos	3ª	Quinta-feira das 19h às 21h45
+
+Cód.	Disciplina	Fase
+27073	Cálculo Numérico		4ª
+27707	Projeto e Otimização de Algoritmos		4ª
+27708	Gerenciamento de Dados II		4ª
+27709	Desenvolvimento de Aplicações II		4ª
+27710	Sistemas Operacionais		4ª
+27711	Resolução de Problemas Estruturados II		4ª
+27009	Laboratório Formativo II		5ª
+27712	Engenharia de Software I		5ª
+27713	Teoria de Grafos		5ª
+27714	Arquitetura de Redes I		5ª
+27715	Segurança da Informação		5ª
+27716	Desenvolvimento para Dispositivos Móveis		5ª
+29125	Vida e Felicidade		5ª
+29126	Escrita Acadêmica		5ª
+29129	Inclusão e Libras		5ª
+29732	Gestão e Negociação		5ª
+29733	Liderança, Inovação e Cultura Empreendedora		5ª
+29734	Raciocínio Lógico		5ª
+29735	Inteligência Emocional		5ª
+29736	Comunicação Assertiva e Mediação de Conflitos		5ª
+29737	Arte, Cultura e Experiência Estética		5ª
+29738	Metodologias Ágeis de Gestão de Projetos		5ª
+29739	Pensamentos Filosóficos		5ª
+27717	Linguagens Formais e Autômatos		6ª
+27718	Arquitetura de Redes II		6ª
+27719	Internet das Coisas		6ª
+27720	Engenharia de Software II		6ª
+27721	Projeto em Computação		6ª
+27722	Optativa I		6ª
+27015	Laboratório Formativo III		7ª
+27725	Computação Gráfica		7ª
+27727	Inteligência Artificial		7ª
+27728	Compiladores		7ª
+27729	Computação Paralela e Distribuida		7ª
+27730	Projeto Inovador I		7ª
+27731	Realidade Virtual e Aumentada		7ª
+27732	Análise de Dados		8ª
+27733	Projeto Inovador II		8ª
+27734	Governança em Ti		8ª
+27735	Optativa II		8ª
+27736	Data Science		8ª
+27737	Cloud Computing		8ª
+Atividade Complementar
+Cód.	Descrição	Carga Horária Mínima	Carga Horária Máxima	Carga Horária Realizada	* Carga Horária Computada
+2592	Apresentação de Trabalhos em Eventos Científicos.	0	30	0	0
+2605	Assistir a Defesas de Trabalhos de Conclusão de Cu	0	20	0	0
+2617	Curso de Idiomas	0	60	0	0
+2611	Disciplinas Complementares ao Currículo Acadêmico,	0	60	0	0
+2614	Eventos Organizados Pelo Curso de Ciência da Compu	0	60	0	0
+2616	Integrar Comissões e Organização de Eventos.	0	20	0	0
+2602	Ministrante de Cursos/minicursos/oficinas na Àrea	0	60	0	0
+2608	Participação Como Ouvinte em Cursos/minicursos/ofi	0	60	44	44
+2603	Participação de Programas E/ou Projetos Que Benefi	0	60	0	0
+2610	Participação em Atividades Culturais e Ações Socia	0	60	0	0
+2612	Participação em Atividades Esportivas (Jogos Inter	0	60	0	0
+2609	Participação em Cursos/minicursos/oficinas Promovi	0	70	0	0
+2604	Participação em Entidades Como Representante do Co	0	60	0	0
+2596	Participação em Grupos de Pesquisa.	0	60	0	0
+2593	Participação em Projetos de Iniciação Científica.	0	70	0	0
+2600	Particpação em Projetos de Extensão.	0	70	0	0
+2599	Proferir Palestra.	0	60	0	0
+2594	Publicação de Artigos Científicos em Revistas Inde	0	20	0	0
+2595	Publicação de Artigos Científicos em Revistas Não	0	20	0	0
+2598	Publicação de Capítulo de Livros.	0	30	0	0
+2601	Realização de Estágio Não Obrigatório com Contrato	0	70	70	70
+2606	Realização de Monitoria em Editais Realizados PE	0	60	0	0
+2607	Realização de Visitas de Estudo/saída de Campo com	0	60	0	0
+2615	Representação Estudantil Nos Colegiados do Curso D	0	30	0	0
+2613	Semana Acadêmica de Ciência e Tecnologia da Unesc	0	60	10	10
+2597

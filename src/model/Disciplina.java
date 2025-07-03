@@ -8,18 +8,18 @@ public class Disciplina {
     private Fase faseId;
     private String codigo;
     private String nome; 
-    private int carga_horaria;
+    private int dia_semana;
 
     public Disciplina(){
 
     }
 
-    public Disciplina(int id, Fase faseId, String codigo, String nome, int carga_horaria){
+    public Disciplina(int id, Fase faseId, String codigo, String nome, int dia_semana){
         this.id = id;
         this.faseId = faseId;
         this.codigo = codigo;
         this.nome = nome;
-        this.carga_horaria = carga_horaria;
+        this.dia_semana = dia_semana;
     }
 
     public int getId() {
@@ -54,12 +54,24 @@ public class Disciplina {
         this.nome = nome;
     }
 
-    public int getCarga_horaria() {
-        return carga_horaria;
+    public int getdia_semana() {
+        return dia_semana;
     }
 
-    public void setCarga_horaria(int carga_horaria) {
-        this.carga_horaria = carga_horaria;
+    public void setdia_semana(int dia_semana) {
+        this.dia_semana = dia_semana;
+    }
+
+    public String getDia_semana() {
+        return String.valueOf(dia_semana);
+    }
+
+    public void setDia_semana(String dia_semana) {
+        try {
+            this.dia_semana = Integer.parseInt(dia_semana);
+        } catch (Exception e) {
+            this.dia_semana = 0;
+        }
     }
 
     private List<Professor> professores = new ArrayList<>();
@@ -77,7 +89,7 @@ public class Disciplina {
             "id=" + id +
             ", codigo='" + codigo + '\'' +
             ", nome='" + nome + '\'' +
-            ", carga_horaria=" + carga_horaria +
+            ", dia_semana=" + dia_semana +
             ", fase=" + (faseId != null ? faseId.getFase() : "null") +
             '}';
     }

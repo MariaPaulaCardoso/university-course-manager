@@ -5,6 +5,7 @@ import model.Fase;
 import model.Disciplina;
 import model.Professor;
 import service.ImportService;
+import util.DisciplinaNomeResolver;
 import util.TxtParser;
 
 import javax.swing.*;
@@ -97,6 +98,9 @@ public class ImportacaoView extends JFrame {
     }
 
     private void preencherTabelas() {
+        // Carregar nomes das disciplinas por código
+        DisciplinaNomeResolver.carregarCodigos("codigos.txt");
+
         // Curso
         String[] colCurso = {"Nome", "Data Processamento", "Período Inicial", "Período Final", "Sequência", "Versão"};
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -134,8 +138,8 @@ public class ImportacaoView extends JFrame {
         for (int i = 0; i < todasDisciplinas.size(); i++) {
             Disciplina d = todasDisciplinas.get(i);
             dadosDisc[i][0] = d.getCodigo();
-            dadosDisc[i][1] = d.getNome();
-            dadosDisc[i][2] = d.getCarga_horaria();
+            dadosDisc[i][1] = DisciplinaNomeResolver.getNomePorCodigo(d.getCodigo());
+            dadosDisc[i][2] = d.getdia_semana();
             dadosDisc[i][3] = d.getFaseId() != null ? d.getFaseId().getFase() : "";
         }
         tblDisciplinas.setModel(new DefaultTableModel(dadosDisc, colDisc));

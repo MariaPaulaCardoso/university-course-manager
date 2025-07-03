@@ -97,11 +97,11 @@ public class ImportacaoParser {
         // Exemplo: 2CODIGO123NOME DA DISCIPLINA   060
         String codigo = linha.substring(1, 11).trim();
         String nome = linha.substring(11, 41).trim();
-        int cargaHoraria = Integer.parseInt(linha.substring(41, 44).trim());
+        int diaSemana = Integer.parseInt(linha.substring(41, 44).trim());
         Disciplina d = new Disciplina();
         d.setCodigo(codigo);
         d.setNome(nome);
-        d.setCarga_horaria(cargaHoraria);
+        d.setdia_semana(diaSemana);
         d.setFaseId(fase);
         return d;
     }
