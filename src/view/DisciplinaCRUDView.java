@@ -2,6 +2,8 @@ package view;
 
 import model.Disciplina;
 import dao.DisciplinaDAO;
+import dao.FaseDAO;
+import model.Fase;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,6 +14,7 @@ public class DisciplinaCRUDView extends JFrame {
     private JTable table;
     private DefaultTableModel tableModel;
     private DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
+    private FaseDAO faseDAO = new FaseDAO();
 
     public DisciplinaCRUDView() {
         setTitle("Gerenciar Disciplinas");
@@ -74,22 +77,56 @@ public class DisciplinaCRUDView extends JFrame {
     }
 
     private void showDisciplinaDialog(Disciplina disciplina) {
+        JComboBox<Fase> cbFase = new JComboBox<>();
+        for (Fase f : faseDAO.getAllFases()) {
+            cbFase.addItem(f);
+        }
+        JLabel lblCurso = new JLabel();
+        cbFase.addActionListener(e -> {
+            Fase selectedFase = (Fase) cbFase.getSelectedItem();
+            if (selectedFase != null && selectedFase.getCurso() != null) {
+                lblCurso.setText(selectedFase.getCurso().getNome());
+            } else {
+                lblCurso.setText("");
+            }
+        });
+        if (cbFase.getItemCount() > 0) {
+            cbFase.setSelectedIndex(0);
+            Fase selectedFase = (Fase) cbFase.getSelectedItem();
+            if (selectedFase != null && selectedFase.getCurso() != null) {
+                lblCurso.setText(selectedFase.getCurso().getNome());
+            }
+        }
         JTextField tfCodigo = new JTextField();
         if (disciplina != null) {
             tfCodigo.setText(disciplina.getCodigo());
+            if (disciplina.getFaseId() != null) {
+                for (int i = 0; i < cbFase.getItemCount(); i++) {
+                    if (cbFase.getItemAt(i).getId() == disciplina.getFaseId().getId()) {
+                        cbFase.setSelectedIndex(i);
+                        break;
+                    }
+                }
+            }
         }
         JPanel panel = new JPanel(new GridLayout(0, 2));
+        panel.add(new JLabel("Fase:")); panel.add(cbFase);
+        panel.add(new JLabel("Curso da Fase:")); panel.add(lblCurso);
         panel.add(new JLabel("Código:")); panel.add(tfCodigo);
         int result = JOptionPane.showConfirmDialog(this, panel, disciplina == null ? "Adicionar Disciplina" : "Editar Disciplina", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
             try {
+                Fase faseSelecionada = (Fase) cbFase.getSelectedItem();
                 String codigo = tfCodigo.getText();
                 if (disciplina == null) {
                     Disciplina nova = new Disciplina();
+                    nova.setFaseId(faseSelecionada);
                     nova.setCodigo(codigo);
                     disciplinaDAO.insertDisciplina(nova);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Edição não implementada.");
+                    disciplina.setFaseId(faseSelecionada);
+                    disciplina.setCodigo(codigo);
+                    disciplinaDAO.updateDisciplina(disciplina);
                 }
                 loadDisciplinas();
             } catch (Exception ex) {

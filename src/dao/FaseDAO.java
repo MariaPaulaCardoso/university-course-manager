@@ -69,4 +69,19 @@ public class FaseDAO {
         return fases;
     }
 
+    public void updateFase(Fase fase) {
+        String sql = "UPDATE tb_fases SET curso_id = ?, fase = ?, qtd_disciplinas = ?, qtd_professores = ? WHERE id = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, fase.getCurso().getId());
+            pstmt.setString(2, fase.getFase());
+            pstmt.setInt(3, fase.getQtd_disciplinas());
+            pstmt.setInt(4, fase.getQtd_professores());
+            pstmt.setInt(5, fase.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

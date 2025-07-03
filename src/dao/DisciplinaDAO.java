@@ -57,4 +57,17 @@ public class DisciplinaDAO {
         }
         return disciplinas;
     }
+    
+    public void updateDisciplina(Disciplina disciplina) {
+        String sql = "UPDATE tb_disciplinas SET fase_id = ?, codigo = ? WHERE id = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, disciplina.getFaseId().getId());
+            pstmt.setString(2, disciplina.getCodigo());
+            pstmt.setInt(3, disciplina.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

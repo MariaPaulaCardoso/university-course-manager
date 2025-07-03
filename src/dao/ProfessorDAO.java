@@ -73,4 +73,18 @@ public class ProfessorDAO {
         }
         return professores;
     }
+
+    public void updateProfessor(Professor professor) {
+        String sql = "UPDATE tb_professores SET disciplina_id = ?, nome = ?, titulo_docente = ? WHERE id = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, professor.getDisciplina().getId());
+            pstmt.setString(2, professor.getNome());
+            pstmt.setInt(3, professor.getTitulo_docente());
+            pstmt.setInt(4, professor.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -2,6 +2,8 @@ package view;
 
 import model.Fase;
 import dao.FaseDAO;
+import dao.CursoDAO;
+import model.Curso;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,6 +14,7 @@ public class FaseCRUDView extends JFrame {
     private JTable table;
     private DefaultTableModel tableModel;
     private FaseDAO faseDAO = new FaseDAO();
+    private CursoDAO cursoDAO = new CursoDAO();
 
     public FaseCRUDView() {
         setTitle("Gerenciar Fases");
@@ -76,6 +79,10 @@ public class FaseCRUDView extends JFrame {
     }
 
     private void showFaseDialog(Fase fase) {
+        JComboBox<Curso> cbCurso = new JComboBox<>();
+        for (Curso c : cursoDAO.getAllCursos()) {
+            cbCurso.addItem(c);
+        }
         JTextField tfFase = new JTextField();
         JTextField tfQtdDisciplinas = new JTextField();
         JTextField tfQtdProfessores = new JTextField();
@@ -83,25 +90,40 @@ public class FaseCRUDView extends JFrame {
             tfFase.setText(fase.getFase());
             tfQtdDisciplinas.setText(String.valueOf(fase.getQtd_disciplinas()));
             tfQtdProfessores.setText(String.valueOf(fase.getQtd_professores()));
+            if (fase.getCurso() != null) {
+                for (int i = 0; i < cbCurso.getItemCount(); i++) {
+                    if (cbCurso.getItemAt(i).getId() == fase.getCurso().getId()) {
+                        cbCurso.setSelectedIndex(i);
+                        break;
+                    }
+                }
+            }
         }
         JPanel panel = new JPanel(new GridLayout(0, 2));
+        panel.add(new JLabel("Curso:")); panel.add(cbCurso);
         panel.add(new JLabel("Fase:")); panel.add(tfFase);
         panel.add(new JLabel("Qtd Disciplinas:")); panel.add(tfQtdDisciplinas);
         panel.add(new JLabel("Qtd Professores:")); panel.add(tfQtdProfessores);
         int result = JOptionPane.showConfirmDialog(this, panel, fase == null ? "Adicionar Fase" : "Editar Fase", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
             try {
+                Curso cursoSelecionado = (Curso) cbCurso.getSelectedItem();
                 String faseStr = tfFase.getText();
                 int qtdDisciplinas = Integer.parseInt(tfQtdDisciplinas.getText());
                 int qtdProfessores = Integer.parseInt(tfQtdProfessores.getText());
                 if (fase == null) {
                     Fase nova = new Fase();
+                    nova.setCurso(cursoSelecionado);
                     nova.setFase(faseStr);
                     nova.setQtd_disciplinas(qtdDisciplinas);
                     nova.setQtd_professores(qtdProfessores);
                     faseDAO.insertFase(nova);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Edição não implementada.");
+                    fase.setCurso(cursoSelecionado);
+                    fase.setFase(faseStr);
+                    fase.setQtd_disciplinas(qtdDisciplinas);
+                    fase.setQtd_professores(qtdProfessores);
+                    faseDAO.updateFase(fase);
                 }
                 loadFases();
             } catch (Exception ex) {
