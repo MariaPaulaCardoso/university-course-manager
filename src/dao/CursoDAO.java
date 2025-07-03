@@ -72,4 +72,15 @@ public class CursoDAO {
         }
         return cursos;
     }
+
+    public void deleteCurso(int id) {
+        String sql = "DELETE FROM tb_cursos WHERE id = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

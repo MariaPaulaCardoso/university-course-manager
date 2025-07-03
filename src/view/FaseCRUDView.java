@@ -54,7 +54,12 @@ public class FaseCRUDView extends JFrame {
         btnDelete.addActionListener(e -> {
             int row = table.getSelectedRow();
             if (row >= 0) {
-                JOptionPane.showMessageDialog(this, "Exclusão não implementada.");
+                int confirm = JOptionPane.showConfirmDialog(this, "Confirma exclusão da fase?", "Excluir", JOptionPane.YES_NO_OPTION);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    Fase f = getFaseFromRow(row);
+                    faseDAO.deleteFase(f.getId());
+                    loadFases();
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Selecione uma fase para excluir.");
             }

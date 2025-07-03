@@ -70,4 +70,15 @@ public class DisciplinaDAO {
             e.printStackTrace();
         }
     }
+    
+    public void deleteDisciplina(int id) {
+        String sql = "DELETE FROM tb_disciplinas WHERE id = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

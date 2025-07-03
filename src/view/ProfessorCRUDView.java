@@ -60,7 +60,12 @@ public class ProfessorCRUDView extends JFrame {
         btnDelete.addActionListener(e -> {
             int row = table.getSelectedRow();
             if (row >= 0) {
-                JOptionPane.showMessageDialog(this, "Exclusão não implementada.");
+                int confirm = JOptionPane.showConfirmDialog(this, "Confirma exclusão do professor?", "Excluir", JOptionPane.YES_NO_OPTION);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    Professor p = getProfessorFromRow(row);
+                    professorDAO.deleteProfessor(p.getId());
+                    loadProfessores();
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Selecione um professor para excluir.");
             }

@@ -64,9 +64,8 @@ public class CursoCRUDView extends JFrame {
                 int confirm = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir este curso?", "Confirmar", JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
                     int id = (int) tableModel.getValueAt(row, 0);
-                    // Implementar exclusão no DAO
-                    // cursoDAO.deleteCurso(id);
-                    JOptionPane.showMessageDialog(this, "Exclusão não implementada.");
+                    cursoDAO.deleteCurso(id);
+                    loadCursos();
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Selecione um curso para excluir.");

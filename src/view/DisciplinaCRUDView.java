@@ -54,7 +54,12 @@ public class DisciplinaCRUDView extends JFrame {
         btnDelete.addActionListener(e -> {
             int row = table.getSelectedRow();
             if (row >= 0) {
-                JOptionPane.showMessageDialog(this, "Exclusão não implementada.");
+                int confirm = JOptionPane.showConfirmDialog(this, "Confirma exclusão da disciplina?", "Excluir", JOptionPane.YES_NO_OPTION);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    Disciplina d = getDisciplinaFromRow(row);
+                    disciplinaDAO.deleteDisciplina(d.getId());
+                    loadDisciplinas();
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Selecione uma disciplina para excluir.");
             }

@@ -84,4 +84,15 @@ public class FaseDAO {
         }
     }
 
+    public void deleteFase(int id) {
+        String sql = "DELETE FROM tb_fases WHERE id = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
